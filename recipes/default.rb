@@ -28,3 +28,9 @@ apt_repository "zend" do
 end
 
 package "zend-server-ce-php-#{node[:zend][:php][:version]}"
+
+service "zend" do
+  service_name "zend-server"
+  supports :status => true, :restart => true
+  action [ :enable, :start ]
+end
