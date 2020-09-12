@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: zend
+# Cookbook:: zend
 # Recipe:: default
 #
-# Copyright 2011, Heavy Water Software Inc.
+# Copyright:: 2011, Heavy Water Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,20 +17,20 @@
 # limitations under the License.
 #
 
-include_recipe "apt"
+include_recipe 'apt'
 
-apt_repository "zend" do
-  uri "http://repos.zend.com/zend-server/deb"
-  distribution "server"
-  components [ "non-free" ]
-  key "http://repos.zend.com/zend.key"
+apt_repository 'zend' do
+  uri 'http://repos.zend.com/zend-server/deb'
+  distribution 'server'
+  components [ 'non-free' ]
+  key 'http://repos.zend.com/zend.key'
   action :add
 end
 
-package "zend-server-ce-php-#{node[:zend][:php][:version]}"
+package "zend-server-ce-php-#{node['zend']['php']['version']}"
 
-service "zend" do
-  service_name "zend-server"
-  supports :status => true, :restart => true
+service 'zend' do
+  service_name 'zend-server'
+  supports status: true, restart: true
   action [ :enable, :start ]
 end
